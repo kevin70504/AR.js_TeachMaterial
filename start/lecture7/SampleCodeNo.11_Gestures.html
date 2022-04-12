@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gesture Interactions - A-Frame & AR.js</title>
+		<meta charset="utf-8">
+		<!-- 使用A-Frame -->
+		<script src="../../js/aframe.min.js"></script>
+		<!-- 使用Ar.js的A-Frame版本 -->
+		<script src="../../js/aframe-ar.js"></script>
+		<!--使用gesture-detector.js-->
+		<script src="../../js/gesture-detector.js"></script>
+		<!--使用gesture-handler.js-->
+		<script src="../../js/gesture-handler.js"></script>
+	</head>
+
+	<!-- 此範例使用Ar.js的A-Frame版本製作Marker顯示gltf模型並可以觸碰螢幕360度觀察模型 -->
+	<!-- https://aframe.io/docs/1.3.0/components/raycaster.html -->
+	<!-- https://aframe.io/docs/1.3.0/components/cursor.html -->
+
+	<!-- margin 外邊框、overflow 元素的内容太大如何調整-->
+	<body style="margin: 0px; overflow: hidden;">
+		
+		<!-- vr-mode-ui="enabled: false;" 將vr模式按鈕關閉 -->
+		<!-- arjs="debugUIEnabled: false; 將Ar.js 除bug UI 關閉 -->
+		<!--在場景執行gesture-detector-->
+		<a-scene arjs embedded
+		renderer="logarithmicDepthBuffer: true;"
+		vr-mode-ui="enabled: false"
+		gesture-detector
+		id="scene"
+		>
+			<a-assets>
+				<a-asset-item id="bowser" src="https://cdn.glitch.com/06bd98b4-97ee-4c07-a546-fe39ca205034%2Fbowser.glb"></a-asset-item>
+			</a-assets>
+
+			<!--使用Marker hiro-->
+			<!-- raycaster(光線投射) = objects(物件):如不指定則會抓到所有Object3D -->
+			<!-- cursor(光標) = fuse: false; rayOrigin(光標來源) : mouse  -->
+			<a-marker
+				type="pattern" 
+				url="../../data/kanji.patt"
+				raycaster="objects: .clickable"
+				emitevents="true"
+				cursor="fuse: false; rayOrigin: mouse;"
+				id="markerA"
+				>
+
+				<!--將gltf模型bowser設定縮放值為0.05 0.05 0.05並執行gesture-handler-->
+				<a-entity
+					id="bowser-model"
+					gltf-model="#bowser"
+					position="0 0 0"
+					scale="0.05 0.05 0.05"
+					class="clickable"
+					gesture-handler
+				>
+				</a-entity>
+			</a-marker>
+			
+			<a-entity camera></a-entity>
+		
+		</a-scene>
+	
+	</body>
+  
+  	<script>
+	</script>
+	
+</html>

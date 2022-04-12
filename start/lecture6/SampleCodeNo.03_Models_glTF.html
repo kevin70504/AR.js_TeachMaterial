@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Models_glTF</title>
+		<meta charset="utf-8">
+		<!-- 使用A-Frame -->
+		<script src="../../js/aframe.min.js"></script>
+		<!-- 使用Ar.js的A-Frame版本 -->
+		<script src="../../js/aframe-ar.js"></script>
+    </head>
+    
+	<!-- 此範例使用Ar.js的A-Frame版本製作Marker顯示gltf模型 -->
+
+	<!-- margin 外邊框、overflow 元素的内容太大如何調整-->
+	<body style="margin: 0px; overflow: hidden;">
+
+	<!-- vr-mode-ui="enabled: false;" 將vr模式按鈕關閉 -->
+	<!-- arjs="debugUIEnabled: false; 將Ar.js 除bug UI 關閉 -->
+	<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+		
+		<a-assets>
+			<!-- a-asset-item A-Frame的FileLoader -->
+			<a-asset-item id="tree" src="../../assets/models/tree.gltf"></a-asset-item>
+		</a-assets>
+		
+
+		<a-marker type="pattern" url="../../data/hiro.patt">
+		
+			<!-- 方法1 gltf-mode = "#Model Name" -->
+			<a-entity   position="0 0 0" 
+						rotation="0 0 0"
+						scale="0.05 0.05 0.05"
+						gltf-model="#tree" >
+			</a-entity>
+			
+		</a-marker>
+		
+		
+		<a-marker type="pattern" url="../../data/kanji.patt">
+		
+			<!--方法2 gltf-mode = url(/Path) -->
+			<a-entity   position="0 0 0" 
+						rotation="0 0 0"
+						scale="0.07 0.07 0.07"
+						gltf-model="url(../assets/models/tree.gltf)" >
+			</a-entity>
+			
+		</a-marker>
+		
+		<a-entity camera></a-entity>
+		
+	</a-scene>
+			
+	</body>
+	
+	<script>
+	</script>
+	
+</html>

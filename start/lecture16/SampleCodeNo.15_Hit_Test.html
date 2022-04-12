@@ -1,0 +1,66 @@
+<html>
+	  <head>
+			<title>MarkerLess_Tracking</title>
+			<meta charset="utf-8" />
+			<!-- 使用A-Frame -->
+			<script src="../../js/aframe.min.js"></script>
+			<!-- 使用hit-testing -->
+			<script src="../../js/hit-testing.js"></script>
+			<!-- 使用A-Frame擴充包 -->
+			<script src="../../js/aframe-extras.min.js"></script>
+			<!-- .a-enter-vr-button { display: none; } 將vr模式按鈕關閉 -->
+			<style> .a-enter-vr-button { display: none; } </style>
+	  </head>
+
+	  <!-- 此範例使用Ar.js的A-Frame版本製作無Marker製作hittest -->
+
+	  <body>
+		<a-scene background="color: black" webxr="optionalFeatures: hit-test, local-floor, viewer; referenceSpaceType: local">
+
+			<a-assets>
+			<a-asset-item id="spinosaurus" src="../../assets/models/spinosaurus.gltf"></a-asset-item>
+			</a-assets>
+
+		  <a-entity id="world" position="0 0 -3" visible="false" hide-in-ar-mode>
+			<a-entity position="0 0.25 0" rotation="0 90 0" scale="0.5 0.5 0.5"
+					  gltf-model="#spinosaurus"
+					  animation-mixer
+					  ></a-entity>
+		  </a-entity>  
+		  
+		  <!--這是用於確定放置對象位置的標記-->
+		  <a-entity id="reticle" visible="false" ar-hit-test="offset: 0 0">
+			<a-ring rotation="-90 0 0" scale="0.15 0.15 0.15" color="white" material="shader: flat" opacity="0.9"></a-ring>
+		  </a-entity>
+		
+		</a-scene>
+		<script>
+		  
+		  //當使用者執行選擇操作時，例如在手持AR中輕擊螢幕，它將更新位置
+		  const reticle = document.getElementById('reticle');
+		  reticle.addEventListener('select', function (event) {
+			
+			if (
+			  event.detail.inputSource.profiles[0] === "generic-touchscreen" &&
+			  event.detail.inputSource.gamepad
+			) {
+			  // 如果想通過軸處理輸入-1，-1是左上角，1，1是右下角
+			  const x = event.detail.inputSource.gamepad.axes[0];
+			  const y = event.detail.inputSource.gamepad.axes[1];
+			  console.log(x,y);
+			}
+			
+			// 獲取下一個命中事件來定位元素
+			reticle.addEventListener('hit', function (event) {
+			  if (document.querySelector('a-scene').is("ar-mode")) {
+				const position = this.getAttribute('position');
+				document.getElementById('world').setAttribute('position', position);
+				document.getElementById('world').setAttribute('visible', true);
+			  }
+			}, {
+			  once: true
+			});
+		  });
+		</script>
+	  </body>
+</html>

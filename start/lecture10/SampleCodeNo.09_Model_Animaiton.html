@@ -1,0 +1,41 @@
+<html>
+  <head>
+      <title>MarkerLess_Model Animation</title>
+      <meta charset="utf-8" />
+      <!-- 使用A-Frame -->
+      <script src="../../js/aframe.min.js"></script>
+      <!-- 使用A-Frame框充包 -->
+      <script src="../../js/aframe-extras.min.js"></script>
+      <!-- .a-enter-vr-button { display: none; } 將vr模式按鈕關閉 -->
+      <style> .a-enter-vr-button { display: none; } </style>
+  </head>
+
+  <!-- 此範例使用Ar.js的A-Frame版本製作無Marker顯示gltf 動畫 -->
+
+    <!-- margin 外邊框、overflow 元素的内容太大如何調整-->
+	<body style="margin: 0px; overflow: hidden;">
+  <a-scene background="color: black">
+        <a-assets>
+        <!-- Model source: https://sketchfab.com/3d-models/spinosaurus-2135501583704537907645bf723685e7
+             Model author: https://sketchfab.com/VapTor
+             Model license: CC Attribution -->
+        <!-- a-asset-item A-Frame的FileLoader -->
+        <a-asset-item id="spinosaurus" src="../../assets/models/spinosaurus.gltf"></a-asset-item>
+        </a-assets>
+
+      <!-- gltf-mode = "#Model Name" -->
+      <!-- animation-mixer 使用aframe-extras來播放全部動畫 -->
+      <a-entity id="dino" position="-1 0 -3" scale="0.5 0.5 0.5">
+        <a-entity position="0 2.15 0" rotation="0 55 0"
+                  gltf-model="#spinosaurus"
+                  animation-mixer
+                  ></a-entity>
+      </a-entity>  
+
+      <!-- wasd-controls 鍵盤WASD控制camera移動 -->
+      <!-- look-controls 滑鼠控制camera移動 -->
+      <a-entity camera position="0 1 0" wasd-controls look-controls></a-entity>
+    
+  </a-scene>
+  </body>
+</html>

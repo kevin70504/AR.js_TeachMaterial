@@ -1,0 +1,92 @@
+<html>
+	  <head>
+			<title>MarkerLess_Light</title>
+			<meta charset="utf-8" />
+			<!-- 使用A-Frame -->
+			<script src="../../js/aframe.min.js"></script>
+			<!-- .a-enter-vr-button { display: none; } 將vr模式按鈕關閉 -->
+			<style> .a-enter-vr-button { display: none; } </style>
+	  </head>
+	
+		<!-- 此範例使用Ar.js的A-Frame版本製作無Marker顯示燈光 -->
+		<!-- https://aframe.io/docs/1.3.0/primitives/a-light.html#attributes_color -->
+		<!-- https://htmlcolorcodes.com/ -->
+
+		<!-- margin 外邊框、overflow 元素的内容太大如何調整-->
+		<body style="margin: 0px; overflow: hidden;">
+		<a-scene background="color:#000000">
+
+			<a-assets>
+			<img id="my-image" src="../../assets/image/question.png">
+			<img id="moon" src="../../assets/image/moon.jpg">
+			</a-assets>
+
+		  <a-entity id="moon_R" position="0 1.5 -3" scale="0.5 0.5 0.5" 
+			  rotation="0 0 0" animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000; easing:linear;">
+			  <a-sphere src="#moon" radius="1"
+			  position="0 0 0"
+			  ></a-sphere>
+		  </a-entity>
+		  
+		  <a-image id="ui"
+			 position="0 0.5 -3" s
+			 scale="0.5 0.5 0.5"
+			 src="#my-image"           
+		  ></a-image> 
+		  
+		  <!--環境光:影響所有物件-->
+		  <!-- color="#FFFFFF"顏色 color="#3333CC"顏色 intensity="1"強度 target="#Name"目標 visible = "false" 可見性 -->
+		  <a-light id = "light_amb" type="ambient" color="#FFFFFF" intensity="0.5" target="#dino" visible = "false"></a-light>
+
+		  <!--定向光:影響特定角度下的物件-->
+		  <a-light id = "light_dir" type="directional" position="0 0 0" rotation="0 0 0" target="#directionaltarget" visible = "true" >
+		  <a-entity id="directionaltarget" position="0 -0.5 -0.5"></a-entity>
+		  </a-light>
+
+
+		  <!--半罩光:與環境光類似，但具有兩種不同顏色-->
+		  <!-- color="#3333CC"顏色 groundColor="#FE0000"底色 intensity="1"強度 -->
+		  <!--a-entity light="type: hemisphere; color: #3333CC; groundColor: #FE0000; intensity: 2"></a-entity-->
+
+		  <!-- 聚光燈Spot -->
+		  <!-- distance="1"距離 angle="45"角度 intensity="1"強度 color="#FFFFFF"顏色-->
+		  <!--a-light type="spot" distance="5" angle="45" intensity="1" color="#FFFFFF"></a-light-->
+	
+		  <!-- 點光源 -->
+		  <!-- distance="1"距離 decay="1"衰變 intensity="1"強度 color="#FFFFFF"顏色 -->
+		  <!--a-light type="point" distance="5" decay="1" intensity="1" color="#FFFFFF"></a-light-->
+
+
+
+		  
+		  <a-entity camera position="0 1 0" wasd-controls look-controls>
+		  <a-cursor></a-cursor>
+		  </a-entity>
+		
+		</a-scene>
+		<script>
+			  
+			  let index = 0;
+			  
+			  //使用document.querySelector抓取名為UiEl的ID
+			  const UiEl = document.getElementById("ui");
+			  const light_Amb = document.getElementById("light_amb");
+			  const light_Dir = document.getElementById("light_dir");
+			 //添加事件監聽器,監聽click事件
+			  UiEl.addEventListener('click', function ()
+				{
+					if(index == 0){
+						//利用setAttribute切換燈光顯示
+						light_Amb.setAttribute("visible","true");
+						light_Dir.setAttribute("visible","false");
+						index++;
+					}
+					else{
+						light_Amb.setAttribute("visible","false");
+						light_Dir.setAttribute("visible","true");
+						index = 0;
+					}
+				});
+		</script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Texture</title>
+        <meta charset="utf-8" />
+		<!-- 使用A-Frame -->
+        <script src="../../js/aframe.min.js"></script>
+		<!-- 使用Ar.js的A-Frame版本 -->
+        <script src="../../js/aframe-ar.js"></script>
+    </head>
+
+	<!-- 使用Ar.js的A-Frame版本製作Marker hiro顯示貼圖 -->
+	<!-- https://aframe.io/docs/1.3.0/components/material.html -->
+
+	<!-- margin 外邊框、overflow 元素的内容太大如何調整-->
+	<body style="margin: 0px; overflow: hidden;">
+
+		<!-- vr-mode-ui="enabled: false;" 將vr模式按鈕關閉 -->
+		<!-- arjs="debugUIEnabled: false; 將Ar.js 除bug UI 關閉 -->
+		<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+				
+			<a-assets>
+				<!--讀取連結為副檔名jpg的wall圖片-->
+				<img id="Tex_Wall" src="../../assets/image/brick_wall_003_diffuse_1k.jpg">
+			</a-assets>
+			
+			<!--Marker設置為hiro-->
+			<a-marker type="pattern" url="../../data/hiro.patt">
+
+			  <!-- 使用預設球型模型，材質使用HEX十六進位的橘色 -->
+			  <!-- https://htmlcolorcodes.com/ -->
+			  <!-- color="red" 顏色、opacity="1" 透明度 -->
+			  <a-sphere radius="1" color="#FF5733" opacity="0.9"></a-sphere>
+			  </a-entity>
+			  
+			</a-marker>
+
+			<!--Marker設置為kanji-->
+			<a-marker type="pattern" url="../../data/kanji.patt">
+
+			  <!--使用預設方塊模型，材質使用id為Tex_Wall的圖片-->
+			  <!-- src 連結、repeat 材質重複 -->
+			  <!--方法1-->
+			  <!--a-box width="1" height="1" src="../../assets/image/brick_wall_003_diffuse_1k.jpg" repeat="2 2"></a-box-->
+			  <!--方法2-->
+			  <a-box width="1" height="1" src="#Tex_Wall" repeat="2 2"></a-sphere>
+				
+			  </a-marker>
+		  
+			<a-entity camera></a-entity>
+			
+		</a-scene>
+		
+	</body>
+	
+	<script>
+	</script>
+	
+</html>

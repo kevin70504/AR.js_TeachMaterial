@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Stero</title>
+		<meta charset="utf-8" />
+		<!-- 使用A-Frame -->
+		<script src="../../js/aframe.min.js"></script>
+		<!-- 使用Ar.js的A-Frame版本 -->
+		<script src="../../js/aframe-ar.js"></script>
+	</head>
+
+	<!-- 此範例使用Ar.js的A-Frame版本製作Marker顯示物件碰到光標會變色 -->
+
+	<!-- margin 外邊框、overflow 元素的内容太大如何調整-->
+	<body style="margin: 0px; overflow: hidden">
+  
+		<!-- vr-mode-ui="enabled: false;" 將vr模式按鈕關閉 -->
+		<!-- arjs="debugUIEnabled: false; 將Ar.js 除bug UI 關閉 -->
+		<a-scene ar-mode-ui="enabled: false" vr-mode-ui="enabled:false">
+
+
+		  <a-assets>
+				<!--讀取位於src連結中副檔名為png的hiro圖片-->
+				<img id="hiro" src="../../assets/image/hiro.png"/>
+		  </a-assets>
+		  
+		  <!--Marker設置為hiro-->
+		  <a-marker type="pattern" url="../../data/hiro.patt">
+		  
+			 <!--使用預設方塊模型-->
+			<a-box id="box" position="0 0.5 0" color="red" opacity="0.8"></a-box>
+	   
+			 <!--使用預設平面模型-->
+			<a-plane src="#hiro" position="0 0 0"rotation="-90 0 0"></a-plane>
+
+		  </a-marker>
+
+		  <a-entity camera>
+			<!--使用預設光標-->
+			<a-cursor></a-cursor>
+		  </a-entity>
+		
+		</a-scene>
+		
+    <script>
+	
+		//宣告變數boxEl獲取box的值
+		const boxE1 = document.querySelector("#box"); 
+		
+		//當光標偵測有物件進入，觸發函式changeColor，變更顏色。
+		boxE1.addEventListener("mouseenter" ,function() 
+			{
+				boxE1.setAttribute("color","blue")
+			}
+		)
+		//當光標偵測有物件離開，觸發函式changeColor，變更顏色。
+		boxE1.addEventListener("mouseleave" ,function() 
+			{
+				boxE1.setAttribute("color","red")
+			}
+		)
+		
+    </script>
+	
+	</body>
+	
+</html>

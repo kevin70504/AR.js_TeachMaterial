@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+        <title>Text</title>
+        <meta charset="utf-8" />
+		<!-- 使用A-Frame -->
+		<script src="../../js/aframe.min.js"></script>
+		<!-- 使用Ar.js的A-Frame版本 -->
+		<script src="../../js/aframe-ar.js"></script>
+		<!-- 支援3D text -->
+		<script src="../../js/aframe-text-geometry-component.min.js"></script>
+	</head>
+
+	<!-- 此範例使用Ar.js的A-Frame版本製作Marker顯示文字 -->
+
+	<!-- margin 外邊框、overflow 元素的内容太大如何調整-->
+	<body style="margin: 0px; overflow: hidden;">
+
+	<!-- vr-mode-ui="enabled: false;" 將vr模式按鈕關閉 -->
+	<!-- arjs="debugUIEnabled: false; 將Ar.js 除bug UI 關閉 -->
+	<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+
+		<a-assets>
+			<a-asset-item id="exoFont" src="../../assets/fonts/exoBlack.typeface.json"></a-asset-item>
+			<img id="pixels" src="../../assets/image/pixels.png" />
+		</a-assets>
+
+		<!-- 2D text -->
+		<a-marker type="pattern" url="../../data/kanji.patt">
+			
+			<!-- 將平面放置文字下，已增加可視性，調整平面位置以免擋住文字 -->
+			<a-plane color="white" rotation="-90 0 0" position="0 -0.25 0" width="3" material="transparent: true; opacity: 0.90"></a-plane>
+
+			<!-- font 字體  align對齊=left(置左)、right(置右)、center(置中)、justify(程式判斷) -->
+			<a-text value="Hello, world!" font="../../assets/fonts/Exo2Bold.fnt" color="red" rotation="-90 0 0" align="center" scale="2 2 2"></a-text>
+
+		</a-marker>
+
+		<!-- 3D text -->
+		<a-marker type="pattern" url="../../data/hiro.patt">
+
+			<!-- 
+				使用 aframe-text-geometry component
+				can set: bevelSize(斜角尺寸), bevelThickness(斜角厚度), curveSegments(斜角線段), 
+				font(字型), height(高度), size(尺寸), style(風格), value(數值).
+				https://www.npmjs.com/package/aframe-text-geometry-component
+			-->
+			<a-entity text-geometry="value: Hello, world!; font: #exoFont;"
+				material="color: yellow; src: #pixels; repeat: 0.5 0.5;" 
+				rotation="-90 0 0">
+			</a-entity>
+
+		</a-marker>
+
+		<a-entity camera></a-entity>
+		
+	</a-scene>
+	</body>
+</html>
