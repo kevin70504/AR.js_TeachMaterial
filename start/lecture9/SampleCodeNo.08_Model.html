@@ -16,11 +16,11 @@
 
         <a-assets>
         <!-- a-asset-item A-Frame的FileLoader -->
-        <a-asset-item id="tree" src="../../assets/models/tree.gltf"></a-asset-item>
+        <a-asset-item id="tree" src="../../assets/models/spinosaurus.gltf"></a-asset-item>
         </a-assets>
 
       <!-- gltf-mode = "#Model Name" -->
-      <a-entity id="dino" position="0 0 -3" scale="0.1 0.1 0.1">
+      <a-entity id="dino" position="0 0 -3" scale="0.25 0.25 0.25">
         <a-entity position="0 2.15 0" rotation="0 55 0"
                   gltf-model="#tree"
                   ></a-entity>
@@ -28,7 +28,7 @@
 
       <!-- wasd-controls 鍵盤WASD控制camera移動 -->
       <!-- look-controls 滑鼠控制camera移動 -->
-      <a-entity camera position="0 0 0" wasd-controls look-controls></a-entity>
+      <a-entity camera position="0 1 0" wasd-controls look-controls></a-entity>
     
   </a-scene>
   </body>

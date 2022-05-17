@@ -46,7 +46,7 @@
 		</a-scene>
 		
 		<script>
-		  
+
 		  //宣告變數models的值為陣列，裡面設定兩項gltf
 		  let models = [
 			 "../../assets/models/tree.gltf",
@@ -72,6 +72,7 @@
 				modelIndex++;
 				var newIndex = modelIndex % models.length;
 				chageName(boxEl,models[newIndex]);
+				console.log(newIndex);
 			});
 		  
 		</script>

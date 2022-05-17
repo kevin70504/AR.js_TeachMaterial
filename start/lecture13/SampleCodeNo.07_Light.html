@@ -36,12 +36,13 @@
 		  
 		  <!--環境光:影響所有物件-->
 		  <!-- color="#FFFFFF"顏色 color="#3333CC"顏色 intensity="1"強度 target="#Name"目標 visible = "false" 可見性 -->
-		  <a-light id = "light_amb" type="ambient" color="#FFFFFF" intensity="0.5" target="#dino" visible = "false"></a-light>
-
+		  <a-light id = "light_amb" type="ambient" color="#FFFFFF" intensity="0.15" target="#dino" visible = "false"></a-light>
+		  
 		  <!--定向光:影響特定角度下的物件-->
-		  <a-light id = "light_dir" type="directional" position="0 0 0" rotation="0 0 0" target="#directionaltarget" visible = "true" >
+		  <a-light id = "light_dir" type="directional" position="0 0 0" rotation="0 0 0" intensity="1.5" target="#directionaltarget" visible = "true" >
 		  <a-entity id="directionaltarget" position="0 -0.5 -0.5"></a-entity>
 		  </a-light>
+
 
 
 		  <!--半罩光:與環境光類似，但具有兩種不同顏色-->
@@ -50,7 +51,7 @@
 
 		  <!-- 聚光燈Spot -->
 		  <!-- distance="1"距離 angle="45"角度 intensity="1"強度 color="#FFFFFF"顏色-->
-		  <!--a-light type="spot" distance="5" angle="45" intensity="1" color="#FFFFFF"></a-light-->
+		  <!--a-light type="spot" distance="5" angle="45" intensity="2" color="#FFFFFF"></a-light-->
 	
 		  <!-- 點光源 -->
 		  <!-- distance="1"距離 decay="1"衰變 intensity="1"強度 color="#FFFFFF"顏色 -->

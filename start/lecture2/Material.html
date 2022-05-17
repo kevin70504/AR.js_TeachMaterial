@@ -30,8 +30,7 @@
 			  <!-- 使用預設球型模型，材質使用HEX十六進位的橘色 -->
 			  <!-- https://htmlcolorcodes.com/ -->
 			  <!-- color="red" 顏色、opacity="1" 透明度 -->
-			  <a-sphere radius="1" color="#FF5733" opacity="0.9"></a-sphere>
-			  </a-entity>
+			  <a-sphere radius="1.5" color="#FF5733" opacity="0.9"></a-sphere>
 			  
 			</a-marker>
 
@@ -41,9 +40,9 @@
 			  <!--使用預設方塊模型，材質使用id為Tex_Wall的圖片-->
 			  <!-- src 連結、repeat 材質重複 -->
 			  <!--方法1-->
-			  <!--a-box width="1" height="1" src="../../assets/image/brick_wall_003_diffuse_1k.jpg" repeat="2 2"></a-box-->
+			  <!--a-box position="0 0.5 0" width="1" height="1" src="../../assets/image/brick_wall_003_diffuse_1k.jpg" repeat="2 2"></a-box-->
 			  <!--方法2-->
-			  <a-box width="1" height="1" src="#Tex_Wall" repeat="2 2"></a-sphere>
+			  <a-box position="0 0.5 0" width="1" height="1" src="#Tex_Wall" repeat="2 2" visible="true"></a-sphere>
 				
 			  </a-marker>
 		  
